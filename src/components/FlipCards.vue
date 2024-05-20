@@ -1,6 +1,11 @@
 <template>
   <div class="card-container">
-    <div v-for="(card, index) in cards" :key="index" class="card-wrapper" :class="{ lifted: liftedCard === index }">
+    <div
+      v-for="(card, index) in cards"
+      :key="index"
+      class="card-wrapper"
+      :class="{ lifted: liftedCard === index }"
+    >
       <div class="card" :class="{ flipped: flippedCard === index }">
         <div class="card-inner">
           <div class="card-front">Front</div>
@@ -11,26 +16,25 @@
   </div>
   <button @click="flipAndLiftCard">Flip Middle Card</button>
   <button @click="reset">Reset</button>
-
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const cards = ref([1, 2, 3]);
 const flippedCard = ref<number | null>(null);
 const liftedCard = ref<number | null>(null);
 
-const reset = () =>{
+const reset = () => {
   cards.value = [1, 2, 3];
   flippedCard.value = null;
   liftedCard.value = null;
-}
+};
 const flipAndLiftCard = () => {
   flippedCard.value = 1;
   setTimeout(() => {
-    liftedCard.value = 1; 
-  }, 800); 
+    liftedCard.value = 1;
+  }, 800);
 };
 </script>
 
@@ -72,7 +76,8 @@ const flipAndLiftCard = () => {
   transform: translateY(-170px);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -99,7 +104,6 @@ const flipAndLiftCard = () => {
 
 button {
   margin: 20px;
-
 }
 
 @media (max-width: 600px) {
